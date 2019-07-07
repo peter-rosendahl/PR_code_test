@@ -13,7 +13,7 @@ Installation guide:
 1. Download the project
 2. Open Microsoft SQL Server Management Studio, create a new database, and restore database with the database file in this repository
 3. Open the solution in Visual Studio, go to the project's web.config file, go to <connectionStrings> and update the "umbracoDbDSN" connectionString to match with the credentials of your SQL database in step 2
-4. In Visual Studio, build and run the project - you should be seeing the website in function at your default browser now.
+4. In Visual Studio, build the solution and run the project - you should be seeing the website in function at your default browser now.
   
 
 Notes from the developer:
