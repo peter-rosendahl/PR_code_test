@@ -14,6 +14,11 @@ Installation guide:
 2. Open Microsoft SQL Server Management Studio, create a new database, and restore database with the database file in this repository
 3. Open the solution in Visual Studio, go to the project's web.config file, go to <connectionStrings> and update the "umbracoDbDSN" connectionString to match with the credentials of your SQL database in step 2
 4. In Visual Studio, build the solution and run the project - you should be seeing the website in function at your default browser now.
+ 
+To test the functions in the project:
+- Backend login is sent to Henrik with the instructed mail, so his team can access the backend settings.
+- I have created a member in the project, whose login details are also sent to Henrik in the referenced email above.
+- You can create a new member with the requested information in the forms, and the new member will be approved right away, as long as the input values are valid ;-)
   
 
 Notes from the developer:
