@@ -1,0 +1,74 @@
+﻿.pricing-header h2.productListTitle {
+    font-size: 50px;
+}
+
+.pricing-header p.productListDescription {
+    font-size: 30px;
+}
+
+.productList .card .card-header {
+    background-position: center;
+    background-size: cover;
+    border: none;
+}
+
+.productList .card .card-header.Small {
+    background-image: url('/Media/1007/product_1_header.png');
+}
+    .productList .card .card-header.Medium {
+        background-image: url('/Media/1008/product_2_header.png');
+    }
+    .productList .card .card-header.Large {
+        background-image: url('/Media/1009/product_3_header.png');
+    }
+    .productList .card .card-header.Enterprise {
+        background-image: url('/Media/1010/product_4_header.png');
+    }
+
+.productList .card {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 0 40px #5c245f11;
+    overflow: hidden;
+}
+    .productList .card .cardContent {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        height: 100%;
+        padding: 0 20px 20px;
+        box-sizing: border-box;
+    }
+
+    .productList .card .cardPriceTag {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        height: 75px;
+        border-radius: 20px;
+    }
+        .productList .card .cardPriceTag p {
+            margin: 0;
+        }
+
+
+
+/* Responsive Adjustments (Max-Width Queries)*/
+
+@media all and (max-width: 1200px) {
+    .productList .card {
+        flex: none;
+        width: 45%;
+        flex-grow: 1;
+    }
+    .productList .card .card-header {
+        background-position: top right;
+    }
+}
+
+@media all and (max-width: 575px) {
+    .productList .card {
+        width: inherit;
+    }
+}

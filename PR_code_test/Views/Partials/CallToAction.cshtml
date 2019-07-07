@@ -1,0 +1,11 @@
+﻿@model PR_code_test.Models.CallToActionModel
+
+<div class="callToAction">
+    <p class="color_purple">@Model.Message</p>
+    @{
+        if (Model.Link != null && Model.LinkText != null)
+        {
+            <a href="@Model.Link">@Html.Raw(Model.LinkText)</a>
+        }
+    }
+</div>

@@ -1,0 +1,249 @@
+﻿html, body {
+    height: 100%;
+    max-width: 100%;
+}
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+body a:hover { 
+    color: initial; 
+    text-decoration: none;
+}
+
+.color_white,
+header#header nav a#topLogo {
+    color: #FFF;
+}
+.color_purple,
+header#header nav a.color_purple {
+    color: #5c245f;
+}
+
+.color_brigtPurple {
+    color: #aa81ac;
+}
+
+.color_fadePurple {
+    color: #a28da3;
+}
+
+.color_pink {
+    color: #fee7ff;
+}
+
+.background_pink {
+    background: #f5eff5;
+}
+
+.color_gray {
+    color: #bab2bb;
+}
+
+header#header {
+    background: transparent;
+    z-index: 1050;
+}
+header#header nav.navbar.navbar-expand-lg {
+    justify-content: space-between;
+}
+
+header#header #topLogo {
+    font-size: 20px;
+}
+header#header #topLogo:hover {
+    color: #fff;
+}
+header#header #topLogo img {
+    max-height: 40px;
+    margin: 0 20px 0 0;
+}
+
+header#header nav #menuNav.navbar-collapse {
+    flex-grow: 0;
+}
+
+    header#header nav #menuNav a,
+    header#header nav #menuNav button {
+        padding: 0 15px;
+    }
+
+    header#header nav button#buttonSignIn,
+    header#header nav button#lbLogout {
+        border: none;
+        background: none;
+        display: block;
+        width: 100%;
+    }
+
+        header#header nav button.color_purple:hover {
+            text-shadow: 0 0 10px #5c245f33;
+            color: #5c245f;
+        }
+        header#header nav form.form-inline {
+            margin: 0;
+        }
+
+    header#header nav a:not([href]) {
+        color: #fee7ff;
+    }
+
+
+    main {
+        flex: 1 0 auto;
+        margin-top: -150px;
+    }
+
+    main #mainMessage {
+        min-height: 1000px;
+        background: url('/Media/1002/haeder_bg_w_img.png');
+        background-size: cover;
+        background-position: center;
+        box-sizing: border-box;
+        padding: 300px 0;
+    }
+
+        main #mainMessage h1 {
+            max-width: 500px;
+            font-size: 75px;
+            margin: 0 0 50px;
+        }
+
+        main #mainMessage p {
+            max-width: 600px;
+            font-size: 19px;
+        }
+
+
+        main .callToAction {
+            max-width: 720px;
+            width: 100%;
+            margin: 50px auto;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+        }
+
+            main .callToAction p {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            main .callToAction a {
+                background: #aa81ac;
+                padding: 15px 30px;
+                border-radius: 50px;
+                color: #fff;
+                font-size: 20px;
+                margin: 30px auto;
+            }
+
+footer {
+    flex-shrink: 0;
+    background-image: url('/Media/1011/footer_bg.png');
+    background-size: cover;
+    height: 400px;
+}
+
+    footer #footerLogo img {
+        max-width: 250px;
+    }
+
+    footer #footerLogo {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    footer #footerInfo {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    footer .container {
+        margin-top: 100px;
+    }
+
+    footer #footerInfo p {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+
+
+
+body div.modal-backdrop {
+    background-color: rgba(0,0,0,0);
+    background-image: url('/Media/1013/signin_bg.png');
+    background-size: cover;
+    background-position: top;
+}
+
+body div.modal-backdrop.show {
+    opacity: 1;
+}
+
+.modal .modal-header.customModalHeader {
+    margin: -100px 0 50px;
+    border: none;
+}
+
+.modal .modal-header h5.modal-title.color_purple {
+    font-size: 35px;
+    margin: 0 auto;
+}
+.modal .modal-body {
+    padding: 35px;
+}
+
+.modal input.form-control {
+    border-radius: 15px;
+    border: none;
+    height: 50px;
+}
+
+.modal input.form-check-input {
+    width: 20px;
+    height: 20px;
+}
+
+.modal #buttonFormSignIn input,
+.modal #signUpFormContainer button.buttonCloseModal,
+.modal #forgotPasswordFormContainer button.buttonCloseModal {
+    margin: 50px auto 0;
+    display: block;
+    padding: 15px 50px;
+    border-radius: 50px;
+    border: none;
+    background: #e6dce6;
+    color: #fff;
+    font-size: 20px;
+}
+
+.modal .belowModal {
+    margin: 50px 0 -125px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+    .modal .belowModal button#buttonSignUpForm, .modal .belowModal button#buttonForgotPasswordForm {
+        margin: 5px 0;
+        background: none;
+        border: none;
+        color: #fff;
+    }
+
+.modal .successImage img {
+    margin: 0 auto;
+    display: block;
+}
+
+.modal .modal-body p {
+    font-size: 20px;
+    max-width: 350px;
+    margin: 0 auto;
+}

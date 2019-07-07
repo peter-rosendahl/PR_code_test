@@ -1,0 +1,11 @@
+﻿@model PR_code_test.Models.MemberModel
+
+
+<form class="form-inline">
+    @using (Html.BeginUmbracoForm("SubmitLogout", "Member", System.Web.Mvc.FormMethod.Post, new { id = "logout" }))
+    {
+        <button name="logout" type="submit" id="lbLogout" class="color_purple font-weight-bold text-center">
+            Sign out
+        </button>
+    }
+</form>

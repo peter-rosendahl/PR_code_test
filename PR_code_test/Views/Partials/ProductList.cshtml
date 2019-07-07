@@ -1,0 +1,35 @@
+﻿@model PR_code_test.Models.ProductListModel
+@using PR_code_test.Models
+
+<link rel="stylesheet" href="~/CSS/productList.css" />
+
+@{
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+        <h2 class="productListTitle color_purple">@Model.ListHeadline</h2>
+        <p class="productListDescription color_gray">@Model.ListDescription</p>
+    </div>
+    <div class="productList card-deck mb-3">
+        @{
+            foreach (PR_code_test.Models.Product product in Model.ProductList)
+            {
+                <div class="card mb-4">
+                    <div class="card-header @product.ClassName"><h4>@product.Headline</h4></div>
+                    <div class="cardContent">
+                        <div class="card-test">
+                            <p>@Html.Raw(product.Description)</p>
+                        </div>
+                        @{
+                            if (!string.IsNullOrEmpty(product.Price))
+                            {
+                                <div class="cardPriceTag background_pink">
+                                    <p><span class="price font-weight-bold">@product.Price</span><span class="priceInterval font-weight-bold color_purple">/Måned</span></p>
+                                    <p class="color_gray">Ekskl. moms</p>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}

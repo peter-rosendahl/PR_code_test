@@ -1,0 +1,257 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using PR_code_test.Models
+
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>PR Code Test</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <link rel="stylesheet" href="~/CSS/FontAwesome/css/all.min.css">
+    <script type="text/javascript" src="~/CSS/FontAwesome/js/all.min.js">
+    <script src="https://kit.fontawesome.com/3c880a937d.js"></script>
+    <link rel="stylesheet" href="~/CSS/style.css" />
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <header id="header" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a id="topLogo" href="/" class="navbar-brand color_white font-weight-bold mr-auto"><img src="~/Media/1001/logo.png" />AppCMS</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuNav" aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="menuNav" class="collapse navbar-collapse">
+                    @{
+                        if (!Umbraco.MemberIsLoggedOn())
+                        {
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link disabled color_pink text-center">SDK'S</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled color_pink text-center">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled color_pink text-center">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    @Ajax.ActionLink(
+                                        "Sign in",
+                                        actionName: "EnterLoginForm",
+                                        controllerName: "Member",
+                                        routeValues: new PR_code_test.Models.MemberModel { },
+                                        ajaxOptions: new AjaxOptions
+                                        {
+                                            HttpMethod = "GET",
+                                            UpdateTargetId = "signInFormContainer",
+                                            InsertionMode = InsertionMode.Replace
+                                        },
+                                        htmlAttributes: new {
+                                            id = "buttonSignIn",
+                                            @class = "color_purple font-weight-bold text-center",
+                                            data_toggle = "modal",
+                                            data_target = "#memberLogin"
+                                        }
+                                   )
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link disabled color_pink text-center">SDK'S</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled color_pink text-center">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled color_pink text-center">Contact</a>
+                                </li>
+                            </ul>
+                            Html.RenderAction("LogoutView", "Member");
+                        }
+                    }
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        @RenderBody()
+
+        @{
+            if (Umbraco.MemberIsLoggedOn())
+            {
+                //Html.RenderAction("LogoutView", "Member");
+            }
+            else
+            {
+                var memberModel = new MemberModel();
+                <div id="memberLogin" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header customModalHeader">
+                                <h5 class="modal-title color_purple font-weight-bold">Sign in</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="signInFormContainer"></div>
+                                <div class="belowModal">
+                                    @Ajax.ActionLink(
+                                        "Sign up",
+                                        actionName: "EnterSignUpForm",
+                                        controllerName: "Member",
+                                        routeValues: new PR_code_test.Models.MemberModel { },
+                                        ajaxOptions: new AjaxOptions
+                                        {
+                                            HttpMethod = "GET",
+                                            UpdateTargetId = "signUpFormContainer",
+                                            InsertionMode = InsertionMode.Replace
+                                        },
+                                        htmlAttributes: new {
+                                            id = "buttonSignUpForm",
+                                            @class = "color_purple font-weight-bold text-center",
+                                            data_toggle = "modal",
+                                            data_target = "#memberSignUp",
+                                            onclick = "goFromSignInToSignUp()"
+                                        }
+                                   )
+                                    @Ajax.ActionLink(
+                                        "Forgot Password?",
+                                        actionName: "EnterForgotPasswordForm",
+                                        controllerName: "Member",
+                                        routeValues: new PR_code_test.Models.MemberModel { },
+                                        ajaxOptions: new AjaxOptions
+                                        {
+                                            HttpMethod = "GET",
+                                            UpdateTargetId = "forgotPasswordFormContainer",
+                                            InsertionMode = InsertionMode.Replace
+                                        },
+                                        htmlAttributes: new {
+                                            id = "buttonForgotPasswordForm",
+                                            @class = "color_purple font-weight-bold text-center",
+                                            data_toggle = "modal",
+                                            data_target = "#memberForgotPassword",
+                                            onclick = "goFromSignInToForgotPassword()"
+                                        }
+                                   )
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="memberSignUp" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header customModalHeader">
+                                <h5 class="modal-title color_purple font-weight-bold">Sign up</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="signUpFormContainer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="memberForgotPassword" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header customModalHeader">
+                                <h5 class="modal-title color_purple font-weight-bold">Forgot password?</h5>
+                            </div>
+                            <div class="modal-body" id="forgotPasswordFormContainer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+
+                    $('.modal').on('shown.bs.modal', function () {
+                        $(this).find('input:first').focus();
+                    });
+                    $("#memberLogin").on("submit", "#signInForm", function (e) {
+                        e.preventDefault();
+
+                        var form = $(this);
+                        $.ajax({
+                            url: '@Url.Action("RenderLogin", "Member")',
+                            method: 'post',
+                            data: form.serialize(),
+                            success: function (partialResult) {
+                                console.log($(partialResult).text());
+                                if ($(partialResult).text().indexOf('AppCMS') > -1) {
+                                    location.reload(true);
+                                }
+                                else {
+                                    $("#signInFormContainer").html(partialResult);
+                                }
+                            }
+                        });
+                    })
+                    
+                    $("#memberSignUp").on("submit", "#signUpForm", function (e) {
+                        e.preventDefault();
+
+                        var form = $(this);
+                        $.ajax({
+                            url: '@Url.Action("RenderSignUp", "Member")',
+                            method: 'post',
+                            data: form.serialize(),
+                            success: function (partialResult) {
+                                $("#signUpFormContainer").html(partialResult);
+                            }
+                        });
+                    })
+                    
+                    $("#memberForgotPassword").on("submit", "#forgotPasswordForm", function (e) {
+                        e.preventDefault();
+
+                        var form = $(this);
+                        $.ajax({
+                            url: '@Url.Action("RenderForgotPassword", "Member")',
+                            method: 'post',
+                            data: form.serialize(),
+                            success: function (partialResult) {
+                                $("#forgotPasswordFormContainer").html(partialResult);
+                            }
+                        });
+                    })
+
+                    function goFromSignInToSignUp() {
+                        $('#memberLogin').modal('hide');
+                        $('#memberSignUp').modal('show');
+                    }
+                    function goFromSignInToForgotPassword() {
+                        $('#memberLogin').modal('hide');
+                        $('#memberForgotPassword').modal('show');
+                    }
+                </script>
+
+            }
+        }
+    </main>
+    <footer class="d-flex flex-row align-items-center">
+        <div class="container">
+            <div class="row">
+                <div id="footerInfo" class="col-sm">
+                    <p class="color_brigtPurple">CVR: 36030410</p>
+                    <p class="color_brigtPurple">info@houseofcode.io</p>
+                    <p class="color_brigtPurple">+45 72 17 02 20</p>
+                </div>
+                <div id="footerLogo" class="col-sm">
+                    <img src="~/Media/1012/bottom_logo.png" />
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Master.cshtml";
+}
+
+@* the fun starts here *@
+<div id="mainMessage">
+    <div class="container">
+        @Umbraco.Field("headline", insertBefore: "<h1 class='color_purple font-weight-bold'>", insertAfter: "</h1>")
+        @Umbraco.Field("description", insertBefore: "<p class='color_pink'>", insertAfter: "</p>")
+    </div>
+</div>
+<div class="container">
+    @{
+        Html.RenderAction("GetProducts", "Product");
+    }
+</div>
+<div class="container">
+    @{ 
+        Html.RenderAction("GetCallToAction", "CallToAction");
+    }
+</div>
+
+

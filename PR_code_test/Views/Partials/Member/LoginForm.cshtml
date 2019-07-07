@@ -1,0 +1,33 @@
+﻿@using PR_code_test.Controllers
+@using PR_code_test.Models
+@model MemberModel
+
+@{
+    Html.EnableClientValidation(true);
+    Html.EnableUnobtrusiveJavaScript(true);
+}
+
+
+@using (Html.BeginUmbracoForm("RenderLogin", "Member", null, new { id = "signInForm" }, FormMethod.Post))
+{
+    <form>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "color_fadePurple" })
+            @Html.TextBoxFor(model => model.Email, new { type = "email", id = "signInEmail", @class = "form-control background_pink", @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "color_fadePurple" })
+            @Html.TextBoxFor(model => model.Password, new { type = "password", id = "signInPassword", @class = "form-control background_pink" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="form-group text-center">
+            @Html.CheckBoxFor(model => model.RememberMe, new { @class = "form-check-input" })
+            @Html.LabelFor(model => model.RememberMe, new { @class = "color_fadePurple" })
+        </div>
+        <div id="buttonFormSignIn" class="form-group">
+            <input type="submit" class="" value="Sign In" />
+        </div>
+        <div id="errorSignIn"></div>
+    </form>
+}
