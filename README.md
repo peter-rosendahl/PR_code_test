@@ -9,6 +9,13 @@ This project was to be developed within a week, where the tasks of the project a
 Estimated timeframe spent on project development: 20 hours.
 
 
+Installation guide:
+1. Download the project
+2. Open Microsoft SQL Server Management Studio, create a new database, and restore database with the database file in this repository
+3. Open the solution in Visual Studio, go to the project's web.config file, go to <connectionStrings> and update the "umbracoDbDSN" connectionString to match with the credentials of your SQL database in step 2
+4. In Visual Studio, build and run the project - you should be seeing the website in function at your default browser now.
+  
+
 Notes from the developer:
 
 In the given assignment, there were a description of a user story and a visual aid for this, where the user story would return the user to the front page after successfully using the signin form, whereas the visual aid showed a response message inside the dialog. 
